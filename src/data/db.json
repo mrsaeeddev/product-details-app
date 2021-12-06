@@ -27,7 +27,7 @@
     ],
     "product": [
         {
-            "id": "handwash",
+            "subcategory-id": "handwash",
             "name": "Resurrection Handwash",
             "brand": {
                 "name": "Aesop"
@@ -35,7 +35,7 @@
             "price": 39.99
         },
         {
-            "id": "handwash",
+            "subcategory-id": "handwash",
             "name": "Whitening Mint Toothpaste",
             "brand": {
                 "name": "Marvis"
