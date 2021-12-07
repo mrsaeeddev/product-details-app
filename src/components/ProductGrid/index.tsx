@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import ProductCard from "../ProductCard";
 import { globalStyles } from "../../globalStyles";
+import { products } from "./interface";
 
 const styles = StyleSheet.create({
     grid: {
@@ -13,10 +14,11 @@ const styles = StyleSheet.create({
     },
 })
 
-function ProductGrid() {
+function ProductGrid(props: products) {
     return (
-        <View style={styles.grid}><ProductCard />
-            <ProductCard />
+        <View style={styles.grid}>
+            {console.log(props.products)}
+            {props.products.map((v) => <ProductCard product={v} />)}
         </View>
     )
 }

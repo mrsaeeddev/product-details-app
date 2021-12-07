@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
-
+import { View, Text, Image, StyleSheet } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { productProps } from "./interface";
 
 const styles = StyleSheet.create({
     coverImage: {
@@ -20,11 +20,13 @@ const styles = StyleSheet.create({
     }
 });
 
-function ProductCard() {
+function ProductCard(props: productProps) {
     return (<View style={styles.item}><Image
         style={styles.coverImage}
         source={require('../../images/personalcare.jpg')}
-    /></View>)
+    />
+        <Text>{props.product.name}</Text>
+    </View>)
 }
 
 export default ProductCard;

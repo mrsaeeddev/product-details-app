@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { globalStyles } from "../../globalStyles";
+import { subcategory } from "./interface";
 
 const styles = StyleSheet.create({
     inactive: {
@@ -13,8 +14,9 @@ const styles = StyleSheet.create({
     },
 });
 
-function SubCategory() {
-    return (<View style={[styles.inactive, globalStyles.alignItemsCenter]}><Text style={globalStyles.textCenter}>Saeed</Text></View>)
+function SubCategory(props: subcategory) {
+    console.log(props.subcategory)
+    return (<View style={[styles.inactive, globalStyles.alignItemsCenter]}><Text style={globalStyles.textCenter}>{props.subcategory}</Text></View>)
 }
 
 export default SubCategory;
