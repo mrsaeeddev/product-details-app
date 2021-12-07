@@ -1,3 +1,4 @@
 export interface subcategory {
-    subcategory: string
+    subcategory: string,
+    handlePress(v: string): void,
 }

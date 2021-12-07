@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { PRIMARY_COLOR } from "../../constants/styling";
 import { globalStyles } from "../../globalStyles";
 import { subcategory } from "./interface";
 
@@ -8,15 +9,15 @@ const styles = StyleSheet.create({
     inactive: {
         width: wp('10%'),
         height: 50,
-        backgroundColor: 'lightgray',
+        backgroundColor: PRIMARY_COLOR,
         resizeMode: 'stretch',
         borderRadius: 10,
+        marginRight: 15,
     },
 });
 
 function SubCategory(props: subcategory) {
-    console.log(props.subcategory)
-    return (<View style={[styles.inactive, globalStyles.alignItemsCenter]}><Text style={globalStyles.textCenter}>{props.subcategory}</Text></View>)
+    return (<TouchableOpacity onPress={() => props.handlePress(props.subcategory)}><View style={[styles.inactive, globalStyles.alignItemsCenter]}><Text style={[globalStyles.textCenter, globalStyles.boldText]}>{props.subcategory}</Text></View></TouchableOpacity>)
 }
 
 export default SubCategory;

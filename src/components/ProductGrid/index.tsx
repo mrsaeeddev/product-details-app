@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
 })
 
 function ProductGrid(props: products) {
+
     return (
         <View style={styles.grid}>
-            {console.log(props.products)}
             {props.products.map((v) => <ProductCard product={v} />)}
         </View>
     )

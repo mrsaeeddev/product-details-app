@@ -32,7 +32,7 @@
             "brand": {
                 "name": "Aesop"
             },
-            "price": 39.99
+            "price": "39,99 €"
         },
         {
             "subcategory-id": "handwash",
@@ -40,7 +40,7 @@
             "brand": {
                 "name": "Marvis"
             },
-            "price": 9.95
+            "price": "9,95 €"
         }
     ]
 }
