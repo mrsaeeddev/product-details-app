@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 })
 
 function SubCategorySelector(props: subCategories) {
-    return (<View style={[globalStyles.container, styles.grid]}>{props.subcategories.map((v, i) => <SubCategory subcategory={v} handlePress={props.handlePress} />)}</View>)
+    return (<View style={[globalStyles.container, styles.grid]}>{props.subcategories.map((v, i) => <SubCategory key={i} subcategory={v} handlePress={props.handlePress} />)}</View>)
 }
 
 export default SubCategorySelector;

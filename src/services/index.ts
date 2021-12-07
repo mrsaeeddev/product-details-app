@@ -1,6 +1,8 @@
-export const fetchProducts = async () => fetch('http://localhost:3000/product').then(res => res.json())
-
-export const fetchUpdatedProducts = async (subcategoryId: string) => fetch('http://localhost:3000/product/?subcategory-id=' + subcategoryId).then(res => res.json())
+import { API_URL } from "../constants/server"
 
 
-export const fetchCategories = async () => fetch('http://localhost:3000/category').then(res => res.json())
+export const fetchProducts = async () => fetch(`${API_URL}/product`).then(res => res.json())
+
+export const fetchUpdatedProducts = async (subcategoryId: string) => fetch(`${API_URL}/product/?subcategory-id=${subcategoryId}`).then(res => res.json())
+
+export const fetchCategories = async () => fetch(`${API_URL}/category`).then(res => res.json())

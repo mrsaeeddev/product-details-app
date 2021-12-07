@@ -36,6 +36,7 @@ function ProductCategoryPage() {
         })
 
     if (isCategoryLoading) return <Loader />
+    if (isUpdateProductLoading) return <Loader />
 
     const handlePress = (subcategories: any) => {
         setEnableUpdateCall(true)
@@ -46,7 +47,9 @@ function ProductCategoryPage() {
         <View>
             <MainCategoryBanner name={categoryData[0].name} />
             <SubCategorySelector handlePress={handlePress} subcategories={filterSubCategories(categoryData[0].subCategories)} />
-            {isProductLoading ? <Text>Product data loading...</Text> : <ProductGrid products={products} />}
+            {isProductLoading ? <Loader /> : <ProductGrid products={products} />}
+            {products.length === 0 && <Text style={globalStyles.textCenter}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
+
         </View>
     )
 }

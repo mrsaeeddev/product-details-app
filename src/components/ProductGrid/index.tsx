@@ -18,7 +18,7 @@ function ProductGrid(props: products) {
 
     return (
         <View style={styles.grid}>
-            {props.products.map((v) => <ProductCard product={v} />)}
+            {props.products.map((v, i) => <ProductCard key={i} product={v} />)}
         </View>
     )
 }
