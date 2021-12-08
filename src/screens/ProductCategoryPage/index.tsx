@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import MainCategoryBanner from "../../components/MainCategoryBanner";
 import ProductGrid from "../../components/ProductGrid";
 import SubCategorySelector from "../../components/SubCategorySelector";
@@ -18,16 +18,24 @@ function ProductCategoryPage() {
 
     const queryClient = useQueryClient();
 
-    const { isLoading: isCategoryLoading, error: categoryError, data: categoryData, isFetching: isCategoryFetching } = useQuery('categoryData', fetchCategories)
+    const { isLoading: isCategoryLoading, error: categoryError, data: categoryData, isFetching: isCategoryFetching } = useQuery('categoryData', fetchCategories,
+        {
+            onError: (error: any) =>
+                Alert.alert(`Something went wrong: ${error.message}`)
+        })
 
     const { isLoading: isProductLoading, error: productError, data: productData, refetch, isFetching: isProductFetching } = useQuery('productData', fetchProducts, {
         onSuccess: (data) => setProducts(data),
+        onError: (error: any) =>
+            Alert.alert(`Something went wrong: ${error.message}`),
     })
 
     const { isLoading: isUpdateProductLoading, error: updateProductError, data: updatedProductData, isFetching: isUpdateProductFetching } = useQuery(['productData', subCategoryId], () => fetchUpdatedProducts(subCategoryId),
         {
             onSuccess: (data) => setProducts(data),
-            enabled: enableUpdateCall
+            enabled: enableUpdateCall,
+            onError: (error: any) =>
+                Alert.alert(`Something went wrong: ${error.message}`),
         })
 
 
@@ -47,10 +55,10 @@ function ProductCategoryPage() {
 
     return (
         <View>
-            {isCategoryLoading || isCategoryFetching ? <Loader /> : <MainCategoryBanner name={categoryData[0].name} />}
-            <SubCategorySelector handlePress={handlePress} handleAllProducts={handleAllProducts} subcategories={filterSubCategories(categoryData[0].subCategories)} />
+            <MainCategoryBanner name={categoryData[0]?.name} />
+            <SubCategorySelector handlePress={handlePress} handleAllProducts={handleAllProducts} subcategories={filterSubCategories(categoryData[0]?.subCategories)} />
             {isProductFetching ? <Loader /> : <ProductGrid products={products} />}
-            {products.length === 0 && <Text style={globalStyles.textCenter}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
+            {products.length === 0 && <Text style={[globalStyles.textCenter, globalStyles.container]}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
         </View>
     )
 }

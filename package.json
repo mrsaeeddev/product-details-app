@@ -11,6 +11,7 @@
     "server": "json-server --watch src/data/db.json"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "6.0.2",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
