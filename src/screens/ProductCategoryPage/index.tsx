@@ -4,52 +4,53 @@ import MainCategoryBanner from "../../components/MainCategoryBanner";
 import ProductGrid from "../../components/ProductGrid";
 import SubCategorySelector from "../../components/SubCategorySelector";
 import { globalStyles } from "../../globalStyles";
-import { useQuery } from 'react-query'
+import { QueryClient, useQuery, useQueryClient } from 'react-query'
 import { fetchCategories, fetchProducts, fetchUpdatedProducts } from "../../services";
 import Loader from "../../components/Loader";
 import { filterSubCategories } from "../../helpers";
 
 function ProductCategoryPage() {
     const [products, setProducts] = useState([])
-    const [enableMountCalls, setEnableMountCalls] = useState(true)
-    const [enableUpdateCall, setEnableUpdateCall] = useState(false);
+
     const [subCategoryId, setSubCategoryId] = useState('');
 
-    useEffect(() => {
-        setEnableMountCalls(false);
-    }, []);
+    const [enableUpdateCall, setEnableUpdateCall] = useState(false);
 
-    const { isLoading: isCategoryLoading, error: categoryError, data: categoryData } = useQuery('categoryData', fetchCategories, {
-        enabled: enableMountCalls
-    })
+    const queryClient = useQueryClient();
 
-    const { isLoading: isProductLoading, error: productError, data: productData } = useQuery('productData', fetchProducts, {
+    const { isLoading: isCategoryLoading, error: categoryError, data: categoryData, isFetching: isCategoryFetching } = useQuery('categoryData', fetchCategories)
+
+    const { isLoading: isProductLoading, error: productError, data: productData, refetch, isFetching: isProductFetching } = useQuery('productData', fetchProducts, {
         onSuccess: (data) => setProducts(data),
-        enabled: enableMountCalls,
     })
 
-    const { isLoading: isUpdateProductLoading, error: updateProductError, data: updatedProductData } = useQuery(['updatedProductData',
-        subCategoryId], () => fetchUpdatedProducts(subCategoryId),
+    const { isLoading: isUpdateProductLoading, error: updateProductError, data: updatedProductData, isFetching: isUpdateProductFetching } = useQuery(['productData', subCategoryId], () => fetchUpdatedProducts(subCategoryId),
         {
             onSuccess: (data) => setProducts(data),
-            enabled: enableUpdateCall,
+            enabled: enableUpdateCall
         })
 
-    if (isCategoryLoading) return <Loader />
-    if (isUpdateProductLoading) return <Loader />
+    if (isCategoryLoading || isCategoryFetching) return <Loader />
+    if (isProductLoading || isProductFetching) return <Loader />
+    if (isUpdateProductLoading || isUpdateProductFetching) return <Loader />
 
-    const handlePress = (subcategories: any) => {
-        setEnableUpdateCall(true)
-        setSubCategoryId(subcategories.toLowerCase());
+    const handlePress = (subcategory: string) => {
+        setEnableUpdateCall(true);
+        setSubCategoryId(subcategory.toLowerCase());
+    }
+
+    const handleAllProducts = () => {
+        setEnableUpdateCall(false);
+        setSubCategoryId('')
+        refetch();
     }
 
     return (
         <View>
             <MainCategoryBanner name={categoryData[0].name} />
-            <SubCategorySelector handlePress={handlePress} subcategories={filterSubCategories(categoryData[0].subCategories)} />
+            <SubCategorySelector handlePress={handlePress} handleAllProducts={handleAllProducts} subcategories={filterSubCategories(categoryData[0].subCategories)} />
             {isProductLoading ? <Loader /> : <ProductGrid products={products} />}
             {products.length === 0 && <Text style={globalStyles.textCenter}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
-
         </View>
     )
 }

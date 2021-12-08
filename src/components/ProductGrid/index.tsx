@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, FlatList, ScrollView } from "react-native";
 import ProductCard from "../ProductCard";
 import { globalStyles } from "../../globalStyles";
 import { products } from "./interface";
@@ -18,7 +18,7 @@ function ProductGrid(props: products) {
 
     return (
         <View style={styles.grid}>
-            {props.products.map((v, i) => <ProductCard key={i} product={v} />)}
+            <ScrollView horizontal={true}>{props.products.map((v, i) => <ProductCard key={i} product={v} />)}</ScrollView>
         </View>
     )
 }

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         width: wp('42%'),
         padding: PADDING,
         height: 200,
+
         borderRadius: 20,
     },
     item: {
@@ -32,10 +33,11 @@ const styles = StyleSheet.create({
 });
 
 function ProductCard(props: productProps) {
-    return (<View style={styles.item}><Image
-        style={styles.coverImage}
-        source={require('../../images/personalcare.jpg')}
-    />
+    return (<View style={styles.item}>
+        <Image
+            style={styles.coverImage}
+            source={props.product.img}
+        />
         <View style={styles.content}>
             <Text style={[globalStyles.boldText, styles.brandName]}>{props.product.brand.name}</Text>
             <Text style={globalStyles.boldText}>{props.product.name}</Text>
