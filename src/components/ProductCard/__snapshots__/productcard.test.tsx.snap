@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard should render correctly using Snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "flex-start",
+      "paddingLeft": 30,
+      "paddingRight": 30,
+      "paddingTop": 15,
+      "width": 375,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "dummy_url",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 20,
+        "height": 200,
+        "padding": 20,
+        "width": 300,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "width": 315,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "bold",
+          },
+          Object {
+            "color": "#83a2be",
+            "paddingBottom": 5,
+            "paddingTop": 5,
+          },
+        ]
+      }
+    >
+      dummy
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      dummy
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      12
+    </Text>
+  </View>
+</View>
+`;

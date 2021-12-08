@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
 })
 
 function SubCategorySelector(props: subCategories) {
-    console.log(props.subcategories)
     return (
         <View >
             <ScrollView horizontal={true} style={styles.grid}>
