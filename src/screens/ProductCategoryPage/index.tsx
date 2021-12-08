@@ -30,7 +30,7 @@ function ProductCategoryPage() {
             enabled: enableUpdateCall
         })
 
-    if (isCategoryLoading || isCategoryFetching) return <Loader />
+
     if (isProductLoading || isProductFetching) return <Loader />
     if (isUpdateProductLoading || isUpdateProductFetching) return <Loader />
 
@@ -47,9 +47,9 @@ function ProductCategoryPage() {
 
     return (
         <View>
-            <MainCategoryBanner name={categoryData[0].name} />
+            {isCategoryLoading || isCategoryFetching ? <Loader /> : <MainCategoryBanner name={categoryData[0].name} />}
             <SubCategorySelector handlePress={handlePress} handleAllProducts={handleAllProducts} subcategories={filterSubCategories(categoryData[0].subCategories)} />
-            {isProductLoading ? <Loader /> : <ProductGrid products={products} />}
+            {isProductFetching ? <Loader /> : <ProductGrid products={products} />}
             {products.length === 0 && <Text style={globalStyles.textCenter}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
         </View>
     )

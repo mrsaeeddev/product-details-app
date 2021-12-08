@@ -18,7 +18,7 @@ function ProductGrid(props: products) {
 
     return (
         <View style={styles.grid}>
-            <ScrollView horizontal={true}>{props.products.map((v, i) => <ProductCard key={i} product={v} />)}</ScrollView>
+            {props.products.map((v, i) => <ProductCard key={i} product={v} />)}
         </View>
     )
 }

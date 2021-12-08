@@ -7,10 +7,9 @@ import { productProps } from "./interface";
 
 const styles = StyleSheet.create({
     coverImage: {
-        width: wp('42%'),
+        width: wp('40%'),
         padding: PADDING,
         height: 200,
-
         borderRadius: 20,
     },
     item: {
@@ -36,7 +35,9 @@ function ProductCard(props: productProps) {
     return (<View style={styles.item}>
         <Image
             style={styles.coverImage}
-            source={props.product.img}
+            source={{ uri: props.product.img }}
+        // resizeMode={'cover'} // cover or contain its upto you view look
+
         />
         <View style={styles.content}>
             <Text style={[globalStyles.boldText, styles.brandName]}>{props.product.brand.name}</Text>

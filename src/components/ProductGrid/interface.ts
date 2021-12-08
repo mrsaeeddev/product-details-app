@@ -1,4 +1,4 @@
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType, ImageURISource } from "react-native";
 
 interface brand {
     name: string,
@@ -8,7 +8,7 @@ export interface product {
     name: string,
     brand: brand,
     price: number,
-    img: ImageSourcePropType,
+    img: any,
 }
 
 export interface products {

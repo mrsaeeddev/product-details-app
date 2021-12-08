@@ -17,7 +17,8 @@ export const globalStyles = StyleSheet.create({
         fontWeight: FONT_WEIGHT
     },
     inactive: {
-        width: wp('10%'),
+        width: wp('30%'),
+        alignSelf: "flex-start",
         height: 50,
         backgroundColor: PRIMARY_COLOR,
         resizeMode: 'stretch',
