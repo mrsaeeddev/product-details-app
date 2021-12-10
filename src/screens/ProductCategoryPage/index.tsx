@@ -54,12 +54,13 @@ function ProductCategoryPage() {
     }
 
     return (
-        <View>
-            <MainCategoryBanner name={categoryData[0]?.name} />
-            <SubCategorySelector handlePress={handlePress} handleAllProducts={handleAllProducts} subcategories={filterSubCategories(categoryData[0]?.subCategories)} />
-            {isProductFetching ? <Loader /> : <ProductGrid products={products} />}
-            {products.length === 0 && <Text style={[globalStyles.textCenter, globalStyles.container]}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
-        </View>
+        categoryData !== undefined ?
+            <View>
+                <MainCategoryBanner name={categoryData[0]?.name} />
+                <SubCategorySelector handlePress={handlePress} handleAllProducts={handleAllProducts} subcategories={filterSubCategories(categoryData[0]?.subCategories)} />
+                {isProductFetching ? <Loader /> : <ProductGrid products={products} />}
+                {products.length === 0 && <Text style={[globalStyles.textCenter, globalStyles.container]}>Awe! No products to show in this category. We maybe soon adding them. In the meantime, see other products.</Text>}
+            </View> : <Text style={[globalStyles.textCenter, globalStyles.container]}>Error in fetching categories!</Text>
     )
 }
 
