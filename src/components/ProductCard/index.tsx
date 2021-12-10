@@ -36,8 +36,6 @@ function ProductCard(props: productProps) {
         <Image
             style={styles.coverImage}
             source={{ uri: props.product.img }}
-        // resizeMode={'cover'} // cover or contain its upto you view look
-
         />
         <View style={styles.content}>
             <Text style={[globalStyles.boldText, styles.brandName]}>{props.product.brand.name}</Text>

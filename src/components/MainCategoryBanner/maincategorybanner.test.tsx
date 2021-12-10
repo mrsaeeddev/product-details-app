@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 import renderer from 'react-test-renderer';
 
 import MainCategoryBanner from './';
@@ -19,7 +20,7 @@ describe('MainCategoryBanner', () => {
 });
 
 describe('MainCategoryBanner structure', () => {
-    it('Should render 2 categories', () => {
-        expect(tree.root.findByType('Text')).toBeTruthy;
+    it('Should render name prop correctly', () => {
+        expect(tree.root.findByType(Text).props.children).toBe('dummy');
     });
 });
